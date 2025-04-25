@@ -4,12 +4,12 @@ import { useEffect, useState } from 'react';
 
 export default function DashboardPage() {
     const [stats, setStats] = useState({
-        totalBooks: 1520,
-        newBooksThisMonth: 120,
-        totalMembers: 342,
-        newMembersThisWeek: 15,
-        booksIssued: 100,
-        overdueReturns: 37,
+        totalBooks: 520,
+        newBooksThisMonth: 20,
+        totalMembers: 42,
+        newMembersThisWeek: 5,
+        booksIssued: 110,
+        overdueReturns: 47,
     });
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
@@ -18,7 +18,7 @@ export default function DashboardPage() {
         async function fetchStats() {
             setLoading(true);
             try {
-                const res = await fetch('/api/admin/dashboard-stats'); // your real API endpoint
+                const res = await fetch('/api/admin/dashboard-stats');
                 if (!res.ok) throw new Error('Failed to fetch');
 
                 const data = await res.json();
@@ -34,7 +34,7 @@ export default function DashboardPage() {
     }, []);
 
     return (
-        <div>
+        <div className='py-[40px] px-[30px] h-screen pb-[50px]'>
             <div className="text-white text-2xl font-bold mb-6 pl-6">Dashboard</div>
 
             {/* {error && <div className="text-red-400 pl-6 mb-4">{error}</div>} */}
