@@ -1,4 +1,5 @@
 import React from 'react';
+import Image from 'next/image';
 
 const ViewModal = ({ isOpen, onClose, book }) => {
     if (!isOpen || !book) return null;
@@ -61,9 +62,10 @@ const ViewModal = ({ isOpen, onClose, book }) => {
                         </div>
                         <div className="mb-4">
                             <label className="block text-sm font-medium mb-1">Book Image</label>
-                            <img
+                            <Image
                                 src={book.image}
                                 alt={book.title}
+                                height={96} width={64}
                                 className="mt-2 h-24 w-16 object-cover rounded"
                             />
                         </div>

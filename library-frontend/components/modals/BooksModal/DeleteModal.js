@@ -11,9 +11,10 @@ const DeleteModal = ({ isOpen, onClose, onDelete, book }) => {
                     <p className="text-center">
                         Are you sure you want to delete <span className="font-bold">{book.title}</span>?
                     </p>
-                    <img
+                    <Image
                         src={book.image}
                         alt={book.title}
+                        height={96} width={64}
                         className="h-24 w-16 object-cover rounded"
                     />
                 </div>

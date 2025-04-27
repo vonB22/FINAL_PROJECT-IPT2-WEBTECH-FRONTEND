@@ -4,6 +4,7 @@ import Image from 'next/image';
 import { useState } from 'react';
 import { FiSearch } from 'react-icons/fi';
 import { FaHome, FaBook, FaInfoCircle, FaEnvelope } from 'react-icons/fa';
+import Link from "next/link";
 
 export default function LibraryLayout({ children }) {
     const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -65,34 +66,34 @@ export default function LibraryLayout({ children }) {
                             ×
                         </button>
                         <nav className="space-y-4">
-                            <a
+                            <Link
                                 href="/"
                                 className="flex items-center gap-3 text-gray-300 hover:text-yellow-500 transition"
                             >
                                 <FaHome />
                                 <span>Home</span>
-                            </a>
-                            <a
+                            </Link>
+                            <Link
                                 href="/library"
                                 className="flex items-center gap-3 text-gray-300 hover:text-yellow-500 transition"
                             >
                                 <FaBook />
                                 <span>Library</span>
-                            </a>
-                            <a
+                            </Link>
+                            <Link
                                 href="/about"
                                 className="flex items-center gap-3 text-gray-300 hover:text-yellow-500 transition"
                             >
                                 <FaInfoCircle />
                                 <span>About</span>
-                            </a>
-                            <a
+                            </Link>
+                            <Link
                                 href="/contact"
                                 className="flex items-center gap-3 text-gray-300 hover:text-yellow-500 transition"
                             >
                                 <FaEnvelope />
                                 <span>Contact</span>
-                            </a>
+                            </Link>
                         </nav>
                     </aside>
                 )}
