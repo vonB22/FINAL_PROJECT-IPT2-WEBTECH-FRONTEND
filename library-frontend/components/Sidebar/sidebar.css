@@ -138,7 +138,7 @@
     border: none;
     border-radius: 12px;
     transition: all 0.5s ease;
-    background: #1d1b31;
+    /* background: #594fc3; */
 }
 
 .sidebar.open input {
@@ -152,13 +152,13 @@
     left: 0;
     transform: translateY(-50%);
     font-size: 22px;
-    background: #1d1b31;
+    /* background: #141414; */
     color: #FFF;
 }
 
 .sidebar.open .bx-search:hover {
-    background: #1d1b31;
-    color: #FFF;
+    background: #222222;
+    color: #0055bd;
 }
 
 .sidebar .bx-search:hover {
@@ -174,7 +174,7 @@
     align-items: center;
     text-decoration: none;
     transition: all 0.4s ease;
-    background: #11101D;
+    background: #18181B;
 }
 
 .sidebar li a:hover {
@@ -216,7 +216,7 @@
     left: 0;
     bottom: -8px;
     padding: 5px 14px;
-    background: #1d1b31;
+    /* background: #8ead14; */
     transition: all 0.5s ease;
     overflow: hidden;
 }
@@ -252,16 +252,16 @@
 }
 
 .sidebar li.profile #log_out:hover{
-    color: rgb(255, 0, 0);
+    color: rgb(0, 0, 0);
 }
 
 .sidebar .profile #log_out {
     position: absolute;
     top: 50%;
-    right: 0;
+    right: 5px;
     transform: translateY(-50%);
-    background: #1d1b31;
-    width: 100%;
+    /* background: #3e2fdd; */
+    width: 90%;
     height: 60px;
     line-height: 60px;
     border-radius: 0px;

@@ -13,7 +13,7 @@ export default function AuthModal({ onClose }) {
       }, []);
 
     return (
-        <div className="fixed inset-0 z-100 h-screen flex items-start lg:items-center justify-center bg-black bg-opacity-50 backdrop-blur-sm px-24 pt-24 lg:pt-0">
+        <div className="fixed inset-0 z-100 h-screen flex items-start lg:items-center justify-center bg-zinc-950 bg-opacity-50 backdrop-blur-sm px-24 pt-24 lg:pt-0">
             {/* <div className="bg-gray-900 text-white w-full max-w-sm rounded-3xl shadow-lg p-6 pt-1 py-4 mx-10 px-10 transform transition-all duration-100 ease-in-out"> */}
             <div
                 className={`w-full max-w-[350px] bg-gray-900 text-white rounded-3xl shadow-2xl p-6 pt-1 py-4 mx-10 px-10 relative transform transition-all duration-300 ease-in-out

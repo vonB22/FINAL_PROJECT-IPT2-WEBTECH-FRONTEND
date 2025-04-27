@@ -82,7 +82,7 @@ const LibraryUsersTable = () => {
     };
 
     return (
-        <div className={`py-[40px] px-[30px] h-screen pb-[50px] mr-[17px] ${darkMode ? 'bg-gray-950 text-white' : 'bg-white text-black'}`}>
+        <div className={`py-[40px] px-[30px] h-screen pb-[50px] mr-[17px] ${darkMode ? 'bg-zinc-950 text-white' : 'bg-white text-black'}`}>
             <div className="flex justify-between items-center mb-4">
                 <h2 className="text-xl font-semibold">USERS</h2>
                 <div className="flex items-center gap-4">
@@ -93,7 +93,7 @@ const LibraryUsersTable = () => {
                         <input
                             type="text"
                             placeholder="Search users..."
-                            className={`w-full px-3 py-2 pr-10 rounded text-sm ${darkMode ? 'bg-gray-700 border-gray-500 text-white' : 'bg-gray-200 border-gray-300 text-black'} focus:outline-none focus:ring-2 focus:ring-blue-600`}
+                            className={`w-full px-3 py-2 pr-10 rounded text-sm ${darkMode ? 'bg-zinc-900 border-zinc-500 text-white' : 'bg-gray-200 border-gray-300 text-black'} focus:outline-none focus:ring-2 focus:ring-blue-600`}
                         />
                         <button className="absolute right-3 text-gray-400 hover:text-blue-500">
                             <FaSearch className="h-5 w-5" />
@@ -108,9 +108,9 @@ const LibraryUsersTable = () => {
             </div>
 
             <div className="overflow-x-auto pr-[60px]">
-                <table className={`min-w-full ${darkMode ? 'bg-gray-800 text-white' : 'bg-gray-100 text-black'} rounded-lg`}>
+                <table className={`min-w-full ${darkMode ? 'bg-zinc-900 text-white' : 'bg-gray-100 text-black'} rounded-lg`}>
                     <thead>
-                        <tr className={`${darkMode ? 'bg-gray-600' : 'bg-gray-300'} text-left`}>
+                        <tr className={`${darkMode ? 'bg-zinc-800' : 'bg-gray-300'} text-left`}>
                             <th className="px-6 py-3">ID</th>
                             <th className="px-6 py-3">Name</th>
                             <th className="px-6 py-3">Email</th>
@@ -122,7 +122,7 @@ const LibraryUsersTable = () => {
                     </thead>
                     <tbody>
                         {currentUsers.map((user) => (
-                            <tr key={user.id} className={`border-b ${darkMode ? 'border-gray-700 hover:bg-gray-700/35' : 'border-gray-300 hover:bg-gray-200'} transition-colors`}>
+                            <tr key={user.id} className={`border-b ${darkMode ? 'border-zinc-700 hover:bg-zinc-800/50' : 'border-zinc-300 hover:bg-gray-200'} transition-colors`}>
                                 <td className="px-6 py-4">{user.id}</td>
                                 <td className="px-6 py-4">{user.name}</td>
                                 <td className="px-6 py-4">{user.email}</td>
@@ -169,7 +169,7 @@ const LibraryUsersTable = () => {
                         <button
                             onClick={() => handlePageChange(currentPage - 1)}
                             disabled={currentPage === 1}
-                            className={`px-3 py-1 rounded ${darkMode ? 'bg-gray-700 text-white' : 'bg-gray-300 text-black'} disabled:opacity-50`}
+                            className={`px-3 py-1 rounded ${darkMode ? 'bg-zinc-700 text-white' : 'bg-gray-300 text-black'} disabled:opacity-50`}
                         >
                             Prev
                         </button>

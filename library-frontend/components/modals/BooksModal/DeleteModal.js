@@ -4,7 +4,7 @@ const DeleteModal = ({ isOpen, onClose, onDelete, book }) => {
     if (!isOpen || !book) return null;
 
     return (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 mt-[-180px]">
             <div className="bg-white rounded-lg p-6 w-full max-w-sm text-black flex flex-col items-center">
                 <h2 className="text-xl font-semibold mb-4 text-red-600 text-center">Delete Book</h2>
                 <div className="flex items-center gap-4 mb-6">

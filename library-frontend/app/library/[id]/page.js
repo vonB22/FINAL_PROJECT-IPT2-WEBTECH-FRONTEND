@@ -30,6 +30,7 @@ export default function BookDetailsPage() {
     }
 
     return (
+
         <section className="max-w-6xl mx-auto py-3.5 flex flex-col md:flex-row gap-8 items-center mt-0 bg-gray-900/100">
             {/* Book Image */}
             <div className="w-full md:w-1/2 flex justify-center">
@@ -62,5 +63,6 @@ export default function BookDetailsPage() {
                 </button>
             </div>
         </section>
+
     );
 }

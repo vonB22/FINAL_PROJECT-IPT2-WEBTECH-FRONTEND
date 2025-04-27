@@ -3,6 +3,7 @@
 import Image from 'next/image';
 import { useState } from 'react';
 import { FiSearch } from 'react-icons/fi';
+import { FaHome, FaBook, FaInfoCircle, FaEnvelope } from 'react-icons/fa';
 
 export default function LibraryLayout({ children }) {
     const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -11,7 +12,7 @@ export default function LibraryLayout({ children }) {
         <html lang="en" className="dark">
             <body className="bg-gray-900 text-white">
                 {/* Navbar */}
-                <header className="bg-gray-800 p-2 fixed top-0 w-full z-50">
+                <header className="bg-gray-800 p-4 fixed top-0 w-full z-50 shadow-md">
                     <div className="flex items-center justify-between">
                         {/* Logo */}
                         <div className="flex items-center gap-4">
@@ -56,18 +57,50 @@ export default function LibraryLayout({ children }) {
 
                 {/* Sidebar */}
                 {sidebarOpen && (
-                    <aside className="bg-gray-800 text-white w-64 p-4 fixed top-0 left-0 h-full z-50 shadow-lg">
+                    <aside className="bg-gray-800 text-white w-64 p-6 fixed top-0 left-0 h-full z-50 shadow-lg">
                         <button
                             onClick={() => setSidebarOpen(false)}
                             className="text-right w-full text-xl mb-4"
                         >
                             ×
                         </button>
-                        <p>Sidebar content</p>
+                        <nav className="space-y-4">
+                            <a
+                                href="/"
+                                className="flex items-center gap-3 text-gray-300 hover:text-yellow-500 transition"
+                            >
+                                <FaHome />
+                                <span>Home</span>
+                            </a>
+                            <a
+                                href="/library"
+                                className="flex items-center gap-3 text-gray-300 hover:text-yellow-500 transition"
+                            >
+                                <FaBook />
+                                <span>Library</span>
+                            </a>
+                            <a
+                                href="/about"
+                                className="flex items-center gap-3 text-gray-300 hover:text-yellow-500 transition"
+                            >
+                                <FaInfoCircle />
+                                <span>About</span>
+                            </a>
+                            <a
+                                href="/contact"
+                                className="flex items-center gap-3 text-gray-300 hover:text-yellow-500 transition"
+                            >
+                                <FaEnvelope />
+                                <span>Contact</span>
+                            </a>
+                        </nav>
                     </aside>
                 )}
 
-                <main className="mt-10 p-[80px] bg-white/90">{children}</main>
+                {/* Main Content */}
+                <main className="mt-16 md:mt-20 p-6 md:p-10 bg-gray-100 rounded-lg shadow-md">
+                    {children}
+                </main>
             </body>
         </html>
     );

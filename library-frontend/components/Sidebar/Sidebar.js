@@ -45,7 +45,7 @@ export default function AdminLayout({ children }) {
     return (
         <div className="flex h-screen">
             {/* Sidebar */}
-            <div className="sidebar">
+            <div className="sidebar bg-zinc-900">
                 <div className="logo-details">
                     
                     <span className="logo-icon">
@@ -57,8 +57,8 @@ export default function AdminLayout({ children }) {
                 </div>
                 <ul className="nav-list">
                     <li>
-                        <i className="bx bx-search"></i>
-                        <input type="text" placeholder="Search..." />
+                        <i className="bx bx-search bg-zinc-800 hover:bg-blue-500"></i>
+                        <input type="text" className="bg-zinc-800" placeholder="Search..." />
                         <span className="tooltip">Search</span>
                     </li>
                     <li>
@@ -110,7 +110,7 @@ export default function AdminLayout({ children }) {
                         </Link>
                         <span className="tooltip">Setting</span>
                     </li>
-                    <li className="profile">
+                    <li className="profile bg-zinc-800">
                         <Link href="/">
                             Logout <i className="bx bx-log-out" id="log_out"></i>
                         </Link>

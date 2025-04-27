@@ -215,18 +215,18 @@ const BooksTable = () => {
     };
 
     return (
-        <div className={`py-[40px] px-[30px] h-screen pb-[50px] ${darkMode ? 'bg-gray-950 text-white' : 'bg-white text-black'} mr-[14px]`}>
-            <div className="flex justify-between items-center mb-4">
-                <h2 className="text-2xl font-semibold">BOOKS</h2>
-                <div className="flex items-center gap-4">
+        <div className={`py-8 px-6 sm:px-6 lg:px-8 h-screen pb-8 ${darkMode ? 'bg-zinc-950 text-white' : 'bg-white text-black'} lg:mr-[14px] overflow-auto`}>
+            <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 gap-4">
+                <h2 className="text-xl sm:text-2xl font-semibold">BOOKS</h2>
+                <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 w-full sm:w-auto">
                     <button onClick={toggleDarkMode} className="text-2xl">
                         {darkMode ? <FaSun className="text-yellow-500 text-xl" /> : <FaMoon className="text-gray-600 text-xl" />}
                     </button>
-                    <div className="hidden md:flex items-center w-full max-w-md mx-2 relative">
+                    <div className="flex md:flex items-center w-full m-0 sm:mx-2 relative">
                         <input
                             type="text"
                             placeholder="Search books..."
-                            className={`w-full px-3 py-2 pr-10 rounded ${darkMode ? 'bg-gray-700 border-gray-500 text-white' : 'bg-gray-200 border-gray-300 text-black'} focus:outline-none focus:ring-1 focus:ring-blue-500`}
+                            className={`w-full px-3 py-2 pr-10 rounded ${darkMode ? 'bg-zinc-900 border-gray-500 text-white' : 'bg-gray-200 border-gray-300 text-black'} focus:outline-none focus:ring-2 focus:ring-blue-600`}
                         />
                         <button className="absolute right-3 text-gray-400 hover:text-blue-500">
                             <FaSearch className="h-5 w-5" />
@@ -234,7 +234,7 @@ const BooksTable = () => {
                     </div>
                     <button
                         onClick={handleAddBook}
-                        className="flex items-center gap-2 px-4 py-[10px] mr-[65px] w-[200px] text-sm bg-blue-600 hover:bg-blue-500 text-white rounded"
+                        className="flex items-center gap-2 px-4 py-2 w-full max-w-xs text-sm mr-[65px] lg:w-[200px] bg-blue-600 hover:bg-blue-500 text-white rounded"
                     >
                         <FaPlus /> Add Book
                     </button>
@@ -242,26 +242,26 @@ const BooksTable = () => {
             </div>
 
             <div className="overflow-x-auto pr-16">
-                <table className={`min-w-full ${darkMode ? 'bg-gray-800 text-white' : 'bg-gray-100 text-black'} rounded-lg`}>
+                <table className={`min-w-full ${darkMode ? 'bg-zinc-900 text-white' : 'bg-gray-100 text-black'} rounded-lg`}>
                     <thead>
-                        <tr className={`${darkMode ? 'bg-gray-700' : 'bg-gray-300'} text-left`}>
-                            <th className="px-6 py-3">ID</th>
-                            <th className="px-6 py-3">Book</th>
-                            <th className="px-6 py-3">Title</th>
-                            <th className="px-6 py-3">Author</th>
-                            <th className="px-6 py-3">Category</th>
-                            <th className="px-6 py-3">Published</th>
-                            <th className="px-6 py-3">Status</th>
-                            <th className="px-6 py-3 text-center">Actions</th>
+                        <tr className={`${darkMode ? 'bg-zinc-800' : 'bg-gray-300'} text-left`}>
+                            <th className="px-4 py-2 text-xs sm:text-sm md:text-base">ID</th>
+                            <th className="px-4 py-2 text-xs sm:text-sm md:text-base">Book</th>
+                            <th className="px-4 py-2 text-xs sm:text-sm md:text-base">Title</th>
+                            <th className="px-4 py-2 text-xs sm:text-sm md:text-base">Author</th>
+                            <th className="px-4 py-2 text-xs sm:text-sm md:text-base">Category</th>
+                            <th className="px-4 py-2 text-xs sm:text-sm md:text-base">Published</th>
+                            <th className="px-4 py-2 text-xs sm:text-sm md:text-base">Status</th>
+                            <th className="px-4 py-2 text-xs sm:text-sm md:text-base text-center">Actions</th>
                         </tr>
                     </thead>
                     <tbody>
                         {currentBooks.map((book) => (
                             <tr
                                 key={book.id}
-                                className={`border-b ${darkMode ? 'border-gray-700 hover:bg-gray-700/35' : 'border-gray-300 hover:bg-gray-200'} transition-colors`}
+                                className={`border-b ${darkMode ? 'border-zinc-700 hover:bg-zinc-800/50' : 'border-gray-300 hover:bg-gray-200'} transition-colors`}
                             >
-                                <td className="px-6 py-4">{book.id}</td>
+                                <td className="px-6 py-4 text-xs md:text-sm">{book.id}</td>
                                 <td className="px-6 py-4">
                                     <Image
                                         src={book.image}
@@ -271,11 +271,11 @@ const BooksTable = () => {
                                         className="h-12 w-9 object-cover rounded"
                                     />
                                 </td>
-                                <td className="px-6 py-4">{book.title}</td>
-                                <td className="px-6 py-4">{book.author}</td>
-                                <td className="px-6 py-4">{book.category}</td>
-                                <td className="px-6 py-4">{book.published}</td>
-                                <td className="px-6 py-4">
+                                <td className="px-6 py-4 text-xs md:text-sm truncate">{book.title}</td>
+                                <td className="px-6 py-4 text-xs md:text-sm truncate">{book.author}</td>
+                                <td className="px-6 py-4 text-xs md:text-sm truncate">{book.category}</td>
+                                <td className="px-6 py-4 text-xs md:text-sm">{book.published}</td>
+                                <td className="px-6 py-4 text-xs md:text-sm">
                                     <div className="flex items-center gap-2">
                                         <span
                                             className={`h-2.5 w-2.5 rounded-full ${book.status === 'Available' ? 'bg-green-500' : 'bg-red-500'
@@ -303,12 +303,12 @@ const BooksTable = () => {
                 </table>
 
                 {/* Pagination */}
-                <div className="mt-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 px-1 text-sm">
+                <div className="mt-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 px-1 text-sm">
                     <div className="flex gap-2">
                         <button
                             onClick={() => handlePageChange(currentPage - 1)}
                             disabled={currentPage === 1}
-                            className={`px-3 py-1 rounded ${darkMode ? 'bg-gray-700 text-white' : 'bg-gray-300 text-black'} disabled:opacity-50`}
+                            className={`px-3 py-1 rounded ${darkMode ? 'bg-zinc-800 text-white' : 'bg-gray-300 text-black'} disabled:opacity-50`}
                         >
                             Prev
                         </button>
@@ -324,7 +324,7 @@ const BooksTable = () => {
                         <button
                             onClick={() => handlePageChange(currentPage + 1)}
                             disabled={currentPage === totalPages}
-                            className={`px-3 py-1 rounded ${darkMode ? 'bg-gray-700 text-white' : 'bg-gray-300 text-black'} disabled:opacity-50`}
+                            className={`px-3 py-1 rounded ${darkMode ? 'bg-zinc-700 text-white' : 'bg-gray-300 text-black'} disabled:opacity-50`}
                         >
                             Next
                         </button>
