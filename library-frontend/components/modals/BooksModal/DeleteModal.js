@@ -1,4 +1,5 @@
 import React from 'react';
+import Image from 'next/image';
 
 const DeleteModal = ({ isOpen, onClose, onDelete, book }) => {
     if (!isOpen || !book) return null;

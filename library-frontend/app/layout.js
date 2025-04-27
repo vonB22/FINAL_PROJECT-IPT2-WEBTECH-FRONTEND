@@ -10,9 +10,9 @@ import Head from 'next/head';
 export default function RootLayout({ children, }) {
   return (
     <html lang="en">
-      <Head>
+      {/* <Head>
         <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@1,700&display=swap" rel="stylesheet" />
-      </Head>
+      </Head> */}
 
       <Suspense fallback={null}>
         {/* If tailwindcss don't work locally */}
