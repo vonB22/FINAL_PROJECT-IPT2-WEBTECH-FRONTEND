@@ -6,9 +6,9 @@ const ViewModal = ({ isOpen, onClose, book }) => {
 
     return (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-            <div className="bg-white rounded-lg p-6 w-full max-w-md lg:max-w-2xl text-black">
+            <div className="bg-neutral-900 rounded-lg p-6 w-full max-w-md lg:max-w-2xl text-neutral-300">
                 <h2 className="text-xl font-semibold mb-4">View Book Details</h2>
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+                <div className="grid grid-cols-2 gap-4">
                     {/* Left Column */}
                     <div>
                         <div className="mb-4">
@@ -17,7 +17,7 @@ const ViewModal = ({ isOpen, onClose, book }) => {
                                 type="text"
                                 value={book.title}
                                 disabled
-                                className="w-full px-3 py-2 border rounded bg-gray-100 text-gray-500"
+                                className="w-full px-3 py-2 border border-white/50 rounded text-gray-500"
                             />
                         </div>
                         <div className="mb-4">
@@ -26,7 +26,7 @@ const ViewModal = ({ isOpen, onClose, book }) => {
                                 type="text"
                                 value={book.author}
                                 disabled
-                                className="w-full px-3 py-2 border rounded bg-gray-100 text-gray-500"
+                                className="w-full px-3 py-2 border border-white/50 rounded text-gray-500"
                             />
                         </div>
                         <div className="mb-4">
@@ -35,7 +35,7 @@ const ViewModal = ({ isOpen, onClose, book }) => {
                                 type="text"
                                 value={book.category}
                                 disabled
-                                className="w-full px-3 py-2 border rounded bg-gray-100 text-gray-500"
+                                className="w-full px-3 py-2 border border-white/50 rounded text-gray-500"
                             />
                         </div>
                         <div className="mb-4">
@@ -44,7 +44,7 @@ const ViewModal = ({ isOpen, onClose, book }) => {
                                 type="text"
                                 value={book.published}
                                 disabled
-                                className="w-full px-3 py-2 border rounded bg-gray-100 text-gray-500"
+                                className="w-full px-3 py-2 border border-white/50 rounded text-gray-500"
                             />
                         </div>
                     </div>
@@ -57,7 +57,7 @@ const ViewModal = ({ isOpen, onClose, book }) => {
                                 type="text"
                                 value={book.status}
                                 disabled
-                                className="w-full px-3 py-2 border rounded bg-gray-100 text-gray-500"
+                                className="w-full px-3 py-2 border rounded border-white/50 text-gray-500"
                             />
                         </div>
                         <div className="mb-4">
@@ -72,7 +72,7 @@ const ViewModal = ({ isOpen, onClose, book }) => {
                     </div>
                 </div>
                 <div className="flex justify-end gap-2">
-                    <button onClick={onClose} className="px-4 py-2 bg-gray-300 rounded">
+                    <button onClick={onClose} className="px-4 py-2 bg-neutral-600 rounded">
                         Close
                     </button>
                 </div>

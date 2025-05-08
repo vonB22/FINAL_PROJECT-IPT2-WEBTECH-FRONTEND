@@ -8,7 +8,7 @@ const EditModal = ({ isOpen, onClose, onSave, book }) => {
     const [category, setCategory] = useState(book?.category || '');
     const [published, setPublished] = useState(book?.published || '');
     const [status, setStatus] = useState(book?.status || 'Available');
-    const [image, setImage] = useState(book?.image || '/img/book01.jpg'); // Default image
+    const [image, setImage] = useState(book?.image || '/img/default-book.png'); // Default image
 
     useEffect(() => {
         if (book) {
@@ -60,9 +60,9 @@ const EditModal = ({ isOpen, onClose, onSave, book }) => {
     
     return (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-            <div className="bg-white rounded-lg p-6 w-full max-w-md lg:max-w-2xl text-black">
+            <div className="bg-neutral-900 rounded-lg p-6 w-full max-w-md lg:max-w-2xl text-neutral-300">
                 <h2 className="text-xl font-semibold mb-4">Edit Book</h2>
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+                <div className="grid grid-cols-2 gap-4">
                     {/* Left Column */}
                     <div>
                         <div className="mb-4">
@@ -113,9 +113,9 @@ const EditModal = ({ isOpen, onClose, onSave, book }) => {
                                 onChange={(e) => setStatus(e.target.value)}
                                 className="w-full px-3 py-2 border rounded"
                             >
-                                <option value="Available">Available</option>
-                                <option value="Issued">Issued</option>
-                                <option value="Reserved">Reserved</option>
+                                <option className='text-neutral-900' value="Available">Available</option>
+                                <option className='text-neutral-900' value="Issued">Issued</option>
+                                <option className='text-neutral-900' value="Reserved">Reserved</option>
                             </select>
                         </div>
                         <div className="mb-4">
@@ -139,7 +139,7 @@ const EditModal = ({ isOpen, onClose, onSave, book }) => {
                     </div>
                 </div>
                 <div className="flex justify-end gap-2">
-                    <button onClick={onClose} className="px-4 py-2 bg-gray-300 rounded">Cancel</button>
+                    <button onClick={onClose} className="px-4 py-2 bg-neutral-800 rounded">Cancel</button>
                     <button onClick={handleSubmit} className="px-4 py-2 bg-blue-600 text-white rounded">
                         Save
                     </button>
