@@ -40,12 +40,12 @@ export default function AdminLayout({ children }) {
 
             {/* Sidebar */}
             <nav
-                className={`fixed left-0 z-30 flex h-screen w-60 shrink-0 flex-col border-r border-neutral-300 bg-neutral-50 p-4 transition-transform duration-300 md:w-64 md:translate-x-0 md:relative dark:border-neutral-700 dark:bg-neutral-900 ${sidebarIsOpen ? "translate-x-0" : "-translate-x-60"
+                className={`fixed left-0 z-30 flex h-screen w-60 shrink-0 flex-col border-r p-4 transition-transform duration-300 md:w-64 md:translate-x-0 md:relative border-neutral-700 bg-neutral-900 ${sidebarIsOpen ? "translate-x-0" : "-translate-x-60"
                     }`}
                 aria-label="sidebar navigation">
 
                 {/* Logo */}
-                <Link href="/" className="flex items-center gap-2 ml-2 w-fit text-2xl font-bold text-neutral-900 dark:text-white">
+                <Link href="/" className="flex items-center gap-2 ml-2 w-fit text-2xl font-bold">
                     <span className="sr-only">homepage</span>
                     <Image
                         src="/img/owl-logo-light.png"
@@ -60,11 +60,11 @@ export default function AdminLayout({ children }) {
                 </Link>
 
                 {/* Search */}
-                <div className="relative my-4 flex w-full max-w-xs items-center text-neutral-600 dark:text-neutral-300">
-                    <FiSearch className="absolute left-3 text-lg text-neutral-500 dark:text-neutral-400" />
+                <div className="relative my-4 flex w-full max-w-xs items-center text-neutral-300">
+                    <FiSearch className="absolute left-3 text-lg text-neutral-500" />
                     <input
                         type="search"
-                        className="w-full border border-neutral-300 rounded-sm bg-white px-10 py-1.5 text-sm focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black disabled:cursor-not-allowed disabled:opacity-75 dark:border-neutral-700 dark:bg-neutral-950/50 dark:focus-visible:outline-blue-600"
+                        className="w-full border border-neutral-300 rounded-sm px-10 py-1.5 text-sm focus-visible:outline-2 focus-visible:outline-offset-2 disabled:cursor-not-allowed disabled:opacity-75 border-neutral-700 bg-neutral-950/50 focus-visible:outline-blue-600"
                         name="search"
                         aria-label="Search"
                         placeholder="Search"
@@ -76,8 +76,8 @@ export default function AdminLayout({ children }) {
                     <Link
                         href="/dashboard"
                         className={`flex items-center rounded-lg gap-2 px-2 py-2.5 text-sm font-medium ${activePath === "/dashboard"
-                            ? "bg-black/5 text-neutral-900 dark:bg-white/5 dark:text-white"
-                            : "text-neutral-600 underline-offset-2 hover:bg-black/5 hover:text-neutral-900 focus-visible:underline focus:outline-hidden dark:text-neutral-300 dark:hover:bg-white/5 dark:hover:text-white"
+                            ? "bg-white/5 text-white"
+                            : "underline-offset-2 focus-visible:underline focus:outline-hidden text-neutral-300 hover:bg-white/5 hover:text-white"
                             }`}
                     >
                         <FiGrid />
@@ -86,8 +86,8 @@ export default function AdminLayout({ children }) {
                     <Link
                         href="/dashboard/users"
                         className={`flex items-center rounded-lg gap-2 px-2 py-2.5 text-sm font-medium ${activePath === "/dashboard/users"
-                            ? "bg-black/5 text-neutral-900 dark:bg-white/5 dark:text-white"
-                            : "text-neutral-600 underline-offset-2 hover:bg-black/5 hover:text-neutral-900 focus-visible:underline focus:outline-hidden dark:text-neutral-300 dark:hover:bg-white/5 dark:hover:text-white"
+                            ? "bg-white/5 text-white"
+                            : "underline-offset-2 focus-visible:underline focus:outline-hidden text-neutral-300 hover:bg-white/5 hover:text-white"
                             }`}
                     >
                         <FiUsers />
@@ -96,8 +96,8 @@ export default function AdminLayout({ children }) {
                     <Link
                         href="/dashboard/books"
                         className={`flex items-center rounded-lg gap-2 px-2 py-2.5 text-sm font-medium ${activePath === "/dashboard/books"
-                            ? "bg-black/5 text-neutral-900 dark:bg-white/5 dark:text-white"
-                            : "text-neutral-600 underline-offset-2 hover:bg-black/5 hover:text-neutral-900 focus-visible:underline focus:outline-hidden dark:text-neutral-300 dark:hover:bg-white/5 dark:hover:text-white"
+                            ? "bg-white/5 text-white"
+                            : "underline-offset-2 focus-visible:underline focus:outline-hidden text-neutral-300 hover:bg-white/5 hover:text-white"
                             }`}
                     >
                         <FiBook />
@@ -106,8 +106,8 @@ export default function AdminLayout({ children }) {
                     <Link
                         href="/dashboard/borrow-return"
                         className={`flex items-center rounded-lg gap-2 px-2 py-2.5 text-sm font-medium ${activePath === "/dashboard/borrow-return"
-                            ? "bg-black/5 text-neutral-900 dark:bg-white/5 dark:text-white"
-                            : "text-neutral-600 underline-offset-2 hover:bg-black/5 hover:text-neutral-900 focus-visible:underline focus:outline-hidden dark:text-neutral-300 dark:hover:bg-white/5 dark:hover:text-white"
+                            ? "bg-white/5 text-white"
+                            : "underline-offset-2 focus-visible:underline focus:outline-hidden text-neutral-300 hover:bg-white/5 hover:text-white"
                             }`}
                     >
                         <FiRepeat />
@@ -116,8 +116,8 @@ export default function AdminLayout({ children }) {
                     <Link
                         href="/dashboard/message"
                         className={`flex items-center rounded-lg gap-2 px-2 py-2.5 text-sm font-medium ${activePath === "/dashboard/messages"
-                            ? "bg-black/5 text-neutral-900 dark:bg-white/5 dark:text-white"
-                            : "text-neutral-600 underline-offset-2 hover:bg-black/5 hover:text-neutral-900 focus-visible:underline focus:outline-hidden dark:text-neutral-300 dark:hover:bg-white/5 dark:hover:text-white"
+                            ? "bg-white/5 text-white"
+                            : "underline-offset-2 focus-visible:underline focus:outline-hidden text-neutral-300 hover:bg-white/5 hover:text-white"
                             }`}
                     >
                         <FiMessageSquare />
@@ -126,8 +126,8 @@ export default function AdminLayout({ children }) {
                     <Link
                         href="/dashboard/settings"
                         className={`flex items-center rounded-lg gap-2 px-2 py-2.5 text-sm font-medium ${activePath === "/dashboard/settings"
-                            ? "bg-black/5 text-neutral-900 dark:bg-white/5 dark:text-white"
-                            : "text-neutral-600 underline-offset-2 hover:bg-black/5 hover:text-neutral-900 focus-visible:underline focus:outline-hidden dark:text-neutral-300 dark:hover:bg-white/5 dark:hover:text-white"
+                            ? "bg-white/5 text-white"
+                            : "underline-offset-2 focus-visible:underline focus:outline-hidden text-neutral-300 hover:bg-white/5 hover:text-white"
                             }`}
                     >
                         <FiSettings />
@@ -136,7 +136,7 @@ export default function AdminLayout({ children }) {
                     <Link
                         href="/book-website"
                         target="_blank" // Opens the website in a new tab
-                        className="flex items-center text-blue-500 rounded-lg gap-2 px-2 py-2.5 text-sm font-medium text-neutral-600 underline-offset-2 hover:bg-black/5 hover:text-neutral-900 focus-visible:underline focus:outline-hidden dark:text-blue-500 dark:hover:bg-white/5 dark:hover:text-blue-500"
+                        className="flex items-center text-blue-500 rounded-lg gap-2 px-2 py-2.5 text-sm font-medium underline-offset-2 focus-visible:underline focus:outline-hidden text-blue-500 hover:bg-white/5 hover:text-blue-500"
                     >
                         <FiGlobe />
                         <span>View Website</span>
@@ -145,14 +145,14 @@ export default function AdminLayout({ children }) {
             </nav>
 
             {/* Top navbar & main content */}
-            <div className="h-screen w-full overflow-y-auto bg-white dark:bg-neutral-950">
+            <div className="h-screen w-full overflow-y-auto bg-neutral-950">
                 {/* Top navbar */}
                 <nav
-                    className="sticky top-0 z-10 flex items-center justify-between border-b border-neutral-300 bg-neutral-50 px-4 py-2 dark:border-neutral-700 dark:bg-neutral-900"
+                    className="sticky top-0 z-10 flex items-center justify-between border-b px-4 py-2 border-neutral-700 bg-neutral-900"
                     aria-label="top navigation bar"
                 >
                     {/* Breadcrumbs (hidden on mobile) */}
-                    <div className="hidden md:block text-sm font-medium text-neutral-600 dark:text-neutral-300">
+                    <div className="hidden md:block text-sm font-medium text-neutral-300">
                         {pathSegments.length > 0 ? (
                             pathSegments.map((segment, index) => (
                                 <span key={index}>
@@ -170,7 +170,7 @@ export default function AdminLayout({ children }) {
                     {/* Sidebar toggle button (visible on mobile) */}
                     <button
                         type="button"
-                        className="md:hidden text-neutral-600 dark:text-neutral-300"
+                        className="md:hidden text-neutral-300"
                         onClick={() => setSidebarIsOpen(true)}
                     >
                         <FiMenu className="text-lg" />
@@ -182,7 +182,7 @@ export default function AdminLayout({ children }) {
                         {/* Theme toggle button */}
                         <button
                             type="button"
-                            className="flex items-center gap-2 text-neutral-600 dark:text-neutral-300 hover:text-neutral-900 dark:hover:text-white"
+                            className="flex items-center gap-2 text-neutral-300 hover:text-white"
                             onClick={() => setIsDarkMode(!isDarkMode)}
                         >
                             {isDarkMode ? <FiSun className="text-lg" /> : <FiMoon className="text-lg" />}
@@ -192,7 +192,7 @@ export default function AdminLayout({ children }) {
                         <div className="relative">
                             <button
                                 type="button"
-                                className={`flex w-full items-center rounded-sm gap-2 p-2 text-left text-neutral-600 hover:bg-black/5 hover:text-neutral-900 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black dark:text-neutral-300 dark:hover:bg-white/5 dark:hover:text-white dark:focus-visible:outline-white ${userDropdownIsOpen ? "bg-black/10 dark:bg-white/10" : ""
+                                className={`flex w-full items-center rounded-sm gap-2 p-2 text-left text-neutral-300 hover:bg-white/5 hover:text-white ${userDropdownIsOpen ? "bg-white/5" : ""
                                     }`}
                                 aria-haspopup="true"
                                 onClick={() => setUserDropdownIsOpen(!userDropdownIsOpen)}
@@ -207,7 +207,7 @@ export default function AdminLayout({ children }) {
                                     aria-hidden="true"
                                 />
                                 <div className="hidden md:flex flex-col">
-                                    <span className="text-sm font-bold text-neutral-900 dark:text-white">
+                                    <span className="text-sm font-bold dark:text-white">
                                         Admin01
                                     </span>
                                     <span className="text-[8px]" aria-hidden="true">
@@ -226,7 +226,7 @@ export default function AdminLayout({ children }) {
                                     <div className="flex flex-col py-1.5">
                                         <Link
                                             href="/profile"
-                                            className="flex items-center gap-2 px-2 py-1.5 text-sm font-medium text-neutral-600 underline-offset-2 hover:bg-black/5 hover:text-neutral-900 focus-visible:underline focus:outline-hidden dark:text-neutral-300 dark:hover:bg-white/5 dark:hover:text-white"
+                                            className="flex items-center gap-2 px-2 py-1.5 text-sm font-medium underline-offset-2 focus-visible:underline focus:outline-hidden text-neutral-300 hover:bg-white/5 hover:text-white"
                                             role="menuitem"
                                         >
                                             <Image
@@ -248,7 +248,7 @@ export default function AdminLayout({ children }) {
                                                 setLoading(false);
                                                 window.location.href = "http://localhost:3000";
                                             }}
-                                            className="flex items-center gap-2 px-2 py-1.5 text-sm font-medium text-neutral-600 underline-offset-2 hover:bg-black/5 hover:text-neutral-900 focus-visible:underline focus:outline-hidden dark:text-neutral-300 dark:hover:bg-white/5 dark:hover:text-white"
+                                            className="flex items-center gap-2 px-2 py-1.5 text-sm font-medium underline-offset-2 focus-visible:underline focus:outline-hidden text-neutral-300 hover:bg-white/5 hover:text-white"
                                             role="menuitem"
                                         >
                                             <FiLogOut />

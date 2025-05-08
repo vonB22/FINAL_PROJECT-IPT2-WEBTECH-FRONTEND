@@ -201,7 +201,7 @@ export default function BooksPage() {
                                 label: "Filter by Status",
                                 value: statusFilter,
                                 onChange: (e) => setStatusFilter(e.target.value),
-                                options: ["All", "Available", "Unavailable"],
+                                options: ["All", "Available", "Issued"],
                             },
                             {
                                 label: "Filter by Category",
@@ -271,7 +271,7 @@ export default function BooksPage() {
                 </div>
 
                 {/* Books Table */}
-                <div className="overflow-x-auto bg-neutral-900 rounded-lg shadow">
+                <div className="overflow-x-auto bg-neutral-900 rounded-lg shadow whitespace-nowrap">
                     <table className="w-full text-[10px] sm:text-sm text-left text-white">
                         <thead className="text-[10px] sm:text-xs uppercase bg-neutral-800 text-gray-400">
                             <tr>

@@ -19,8 +19,8 @@ const DigitalLibraryLanding = () => {
       {/* Header */}
       <nav
         className="flex items-center justify-end p-2 gap-6 shadow-md bg-neutral-900/60 backdrop-blur-lg">
-        <Link href="/book-website" className="underline text-[11px] sm:text-sm hover:text-yellow-500 whitespace-nowrap">Website Test ➤</Link>
-        <Link href="/dashboard" className="underline text-[11px] sm:text-sm hover:text-yellow-500 whitespace-nowrap">Dashboard Test ➤</Link>
+        <Link href="/book-website" className="underline text-[11px] text-white sm:text-sm hover:text-yellow-500 whitespace-nowrap">Website Test ➤</Link>
+        <Link href="/dashboard" className="underline text-[11px] text-white sm:text-sm hover:text-yellow-500 whitespace-nowrap">Dashboard Test ➤</Link>
         <button onClick={() => { setMode('login'); setIsOpen(true); }}
           className="text-xs sm:text-sm px-4 py-2 sm:px-4 sm:py-2 text-white bg-yellow-500 hover:bg-yellow-600 rounded-full transition duration-300">
           Login
