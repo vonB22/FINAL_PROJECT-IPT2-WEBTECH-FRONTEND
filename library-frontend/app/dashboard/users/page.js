@@ -5,7 +5,7 @@ import { useState, useMemo } from 'react';
 import DeleteUserModal from '@/components/modals/usersModal/DeleteUserModal';
 
 export default function Page() {
-    const allUsers = [
+    const allUsers = useMemo(() => [
         {
             id: 1,
             name: 'Miya',
@@ -62,7 +62,8 @@ export default function Page() {
             joinedDate: '9/1/2025',
             status: 'Active',
         },
-    ]
+    ], []);
+
 
     // const [allUsers, setAllUsers] = useState([]);
     const [statusFilter, setStatusFilter] = useState('All');

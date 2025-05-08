@@ -4,7 +4,7 @@ import { FiEye, FiEdit, FiTrash, FiSearch, FiPlus } from 'react-icons/fi';
 import { useState, useMemo } from 'react';
 
 export default function BorrowReturnPage() {
-    const allTransactions = [
+    const allTransactions = useMemo(() => [
         {
             id: 1,
             book: 'The Pain of Onkai',
@@ -32,7 +32,8 @@ export default function BorrowReturnPage() {
             status: 'Borrowed',
             image: '/img/book03.png',
         },
-    ];
+    ], []);
+
 
     const [statusFilter, setStatusFilter] = useState('All');
     const [searchQuery, setSearchQuery] = useState('');
@@ -171,10 +172,10 @@ export default function BorrowReturnPage() {
                                     <td className="px-4 py-3">
                                         <span
                                             className={`px-2 py-1 text-[11px] sm:text-xs font-medium rounded ${transaction.status === 'Returned'
-                                                    ? 'bg-green-600 text-white'
-                                                    : transaction.status === 'Overdue'
-                                                        ? 'bg-red-600 text-white'
-                                                        : 'bg-yellow-600 text-white'
+                                                ? 'bg-green-600 text-white'
+                                                : transaction.status === 'Overdue'
+                                                    ? 'bg-red-600 text-white'
+                                                    : 'bg-yellow-600 text-white'
                                                 }`}
                                         >
                                             {transaction.status}
@@ -225,8 +226,8 @@ export default function BorrowReturnPage() {
                                 key={i}
                                 onClick={() => setCurrentPage(i + 1)}
                                 className={`px-3 py-1 rounded ${currentPage === i + 1
-                                        ? 'bg-blue-600 text-white'
-                                        : 'bg-neutral-800 text-gray-400'
+                                    ? 'bg-blue-600 text-white'
+                                    : 'bg-neutral-800 text-gray-400'
                                     }`}
                             >
                                 {i + 1}

@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useMemo } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { FiMenu, FiX, FiBook, FiHome, FiInfo, FiPhone, FiLogOut, FiSearch, FiMapPin, FiMail } from 'react-icons/fi';
@@ -8,7 +8,7 @@ import { FiMenu, FiX, FiBook, FiHome, FiInfo, FiPhone, FiLogOut, FiSearch, FiMap
 export default function BookWebsite() {
 
     // Temporary book data
-    const books = [
+    const books = useMemo(() => [
         { id: 1, title: "The Pain of Onkai", author: "N.K. Edo", image: "/img/book01.png", status: "Issued" },
         { id: 2, title: "Lost Decades", author: "Menzie Chinn", image: "/img/book02.png", status: "Available" },
         { id: 3, title: "Eloquent JavaScript", author: "Marijn Haverbeke", image: "/img/book03.png", status: "Available" },
@@ -19,7 +19,7 @@ export default function BookWebsite() {
         { id: 8, title: "Book Four", author: "Author_8", image: "/img/book03.png", status: "Issued" },
         { id: 9, title: "Book Four", author: "Author_9", image: "/img/book02.png", status: "Issued" },
         { id: 10, title: "Book Four", author: "Author_10", image: "/img/book04.png", status: "Issued" },
-    ];
+    ], []);
 
     const newArrivalsData = [
         { id: 1, title: "The Pain of Onkai", author: "N.K. Edo", image: "/img/book01.png", status: "Issued" },
@@ -37,15 +37,15 @@ export default function BookWebsite() {
     const [carouselBgColor, setCarouselBgColor] = useState("#1c2833"); // Default background color
     const [currentSlide, setCurrentSlide] = useState(0);
 
-    const colors = [
+    const colors = useMemo(() => [
         "#1c2833",
-        "#5d6d7e ",
+        "#5d6d7e",
         "#F59E0B",
         "#922b21",
         "#1b2631",
         "#f39c12",
         "#1b2631",
-    ];
+    ], []);
 
     const [searchQuery, setSearchQuery] = useState('');
     const [searchResults, setSearchResults] = useState([]);
@@ -79,7 +79,7 @@ export default function BookWebsite() {
         );
         setSearchResults(searchQuery.trim() === '' ? [] : filtered);
         setIsModalOpen(searchQuery.trim() !== '');
-    }, [searchQuery]);
+    }, [searchQuery, books]);
 
     // Close sidebar when clicking outside
     useEffect(() => {
@@ -97,6 +97,7 @@ export default function BookWebsite() {
 
         return () => document.removeEventListener('mousedown', handleClickOutside);
     }, [menuOpen]);
+
     useEffect(() => {
         const interval = setInterval(() => {
             setCurrentSlide((prev) => {
@@ -750,8 +751,8 @@ export default function BookWebsite() {
                         <div className="w-full md:w-1/2 space-y-6">
                             <h2 className="text-lg sm:text-2xl md:text-4xl font-bold text-blue-700">About Us</h2>
                             <p className="text-sm sm:text-base md-text-lg text-neutral-700">
-                                Welcome to Digital Library — your cozy corner for all things literary. Whether you're a
-                                passionate reader, an aspiring writer, or just curious, we're here to inspire
+                                Welcome to Digital Library — your cozy corner for all things literary. Whether you&#39;re a
+                                passionate reader, an aspiring writer, or just curious, we&#39;re here to inspire
                                 and connect book lovers from around the world.
                             </p>
                             <p className="text-xs sm:text-sm md:text-base text-neutral-600">
