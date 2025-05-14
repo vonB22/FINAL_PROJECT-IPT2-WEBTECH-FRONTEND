@@ -1,4 +1,12 @@
-<p align="center"> <a href="https://nextjs.org"> <img src="https://cdn.worldvectorlogo.com/logos/nextjs-2.svg" alt="Next.js Logo" width="100" /> </a> </p> <p align="center"> <strong>A modern web application powered by <a href="https://nextjs.org">Next.js</a></strong> </p>
+<p align="center">
+  <a href="https://nextjs.org">
+    <img src="https://assets.vercel.com/image/upload/v1662130559/nextjs/Icon_dark_background.png" alt="Next.js Logo" width="100" />
+  </a>
+</p>
+
+<p align="center">
+  <strong>A modern web application powered by <a href="https://nextjs.org">Next.js</a></strong>
+</p>
 
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
