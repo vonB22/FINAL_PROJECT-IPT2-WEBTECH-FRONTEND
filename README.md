@@ -1,3 +1,5 @@
+<p align="center"> <a href="https://nextjs.org"> <img src="https://cdn.worldvectorlogo.com/logos/nextjs-2.svg" alt="Next.js Logo" width="100" /> </a> </p> <p align="center"> <strong>A modern web application powered by <a href="https://nextjs.org">Next.js</a></strong> </p>
+
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
