@@ -754,7 +754,7 @@ export default function BookWebsite() {
 
                         {/* Right Side - Text Content */}
                         <div className="w-full md:w-1/2 space-y-6">
-                            <h2 className="text-lg sm:text-2xl md:text-4xl font-bold text-blue-700">About Us</h2>
+                            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-blue-700">About Us</h2>
                             <p className="text-sm sm:text-base md-text-lg text-neutral-700">
                                 Welcome to Digital Library — your cozy corner for all things literary. Whether you&#39;re a
                                 passionate reader, an aspiring writer, or just curious, we&#39;re here to inspire

@@ -5,7 +5,7 @@ import Script from 'next/script';
 export default function RootLayout({ children, }) {
   return (
     <html lang="en">
-      <body className="antialiased w-full">
+      <body className="antialiased w-full bg-neutral-950">
         <Script src="https://cdn.tailwindcss.com" strategy="beforeInteractive" />
 
         {children}
