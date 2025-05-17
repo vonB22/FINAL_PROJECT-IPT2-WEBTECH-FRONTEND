@@ -142,7 +142,7 @@ export default function AdminLayout({ children }) {
             </nav>
 
             {/* Top navbar & main content */}
-            <div className="h-screen w-full overflow-y-auto bg-white dark:bg-neutral-950">
+            <div className="h-screen w-full overflow-y-auto bg-neutral-950">
                 {/* Top navbar */}
                 <nav
                     className="sticky top-0 z-10 flex items-center justify-between border-b px-4 py-2 border-neutral-700 bg-neutral-900"
