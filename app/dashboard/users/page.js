@@ -1,18 +1,23 @@
 'use client';
 import Image from 'next/image';
 import { FiEye, FiEdit, FiTrash, FiPlus, FiSearch } from 'react-icons/fi';
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import DeleteUserModal from '@/components/modals/usersModal/DeleteUserModal';
+import AddUserModal from '@/components/modals/usersModal/AddUserModal';
+import EditUserModal from '@/components/modals/usersModal/EditUserModal';
+import ViewUserModal from '@/components/modals/usersModal/ViewUserModal';
 
 export default function Page() {
-    const allUsers = useMemo(() => [
+    // Sample users
+    const sampleUsers = [
         {
             id: 1,
-            name: 'Miya',
-            email: 'miya@example.com',
-            avatar: '/img/F.jpg',
-            joinedDate: '2/10/2023',
-            status: 'Inactive',
+            name: 'Car Doe',
+            email: 'car.doe@example.com',
+            avatar: '/img/M.jpg',
+            joinedDate: '3/10/2024',
+            status: 'Active',
+            role: 'User',
         },
         {
             id: 2,
@@ -21,6 +26,7 @@ export default function Page() {
             avatar: '/img/M.jpg',
             joinedDate: '11/10/2023',
             status: 'Active',
+            role: 'Admin',
         },
         {
             id: 3,
@@ -29,6 +35,7 @@ export default function Page() {
             avatar: '/img/F.jpg',
             joinedDate: '12/10/2023',
             status: 'Inactive',
+            role: 'User',
         },
         {
             id: 4,
@@ -37,82 +44,48 @@ export default function Page() {
             avatar: '/img/M.jpg',
             joinedDate: '1/1/2024',
             status: 'Active',
+            role: 'Moderator',
         },
-        {
-            id: 5,
-            name: 'Car Doe',
-            email: 'car.doe@example.com',
-            avatar: '/img/M.jpg',
-            joinedDate: '3/10/2024',
-            status: 'Active',
-        },
-        {
-            id: 6,
-            name: 'Layla',
-            email: 'layla@example.com',
-            avatar: '/img/F.jpg',
-            joinedDate: '6/10/2025',
-            status: 'Active',
-        },
-        {
-            id: 7,
-            name: 'Kaisel',
-            email: 'kaisel@example.com',
-            avatar: '/img/M.jpg',
-            joinedDate: '9/1/2025',
-            status: 'Active',
-        },
-    ], []);
+    ];
 
+    // Use sample users as initial state
+    const [allUsers, setAllUsers] = useState(sampleUsers);
 
-    // const [allUsers, setAllUsers] = useState([]);
+    // Fetch users from backend and merge with sample users
+    useEffect(() => {
+        async function fetchUsers() {
+            try {
+                const res = await fetch('/api/users'); // Change to your backend endpoint
+                if (!res.ok) throw new Error('Network error');
+                const backendUsers = await res.json();
+                // Merge backend users with sample users, avoiding duplicates by id
+                const merged = [
+                    ...backendUsers.filter(
+                        bu => !sampleUsers.some(su => su.id === bu.id)
+                    ),
+                    ...sampleUsers,
+                ];
+                setAllUsers(merged);
+            } catch (err) {
+                // If backend fails, keep sample users
+                setAllUsers(sampleUsers);
+            }
+        }
+        fetchUsers();
+    }, []);
+
     const [statusFilter, setStatusFilter] = useState('All');
     const [joinedDateFilter, setJoinedDateFilter] = useState('All');
     const [searchQuery, setSearchQuery] = useState('');
     const [currentPage, setCurrentPage] = useState(1);
     const itemsPerPage = 5;
 
-    // useEffect(() => {
-    //     const fetchUsers = async () => {
-    //         try {
-    //             const response = await fetch(
-    //                 `/api/users?status=${statusFilter}&joinedDate=${joinedDateFilter}&search=${searchQuery}&page=${currentPage}&limit=${itemsPerPage}`
-    //             );
-    //             const data = await response.json();
-    //             setAllUsers(data);
-    //         } catch (error) {
-    //             console.error('Error fetching users:', error);
-    //         }
-    //     };
-
-    //     fetchUsers();
-    // }, [statusFilter, joinedDateFilter, searchQuery, currentPage]);
-
-    const handleSearchToggle = () => {
-        setSearchOpen((prev) => !prev);
-        setSearchQuery(''); // Clear search query when toggling
-    };
-
     const [searchOpen, setSearchOpen] = useState(false);
     const [deleteModalOpen, setDeleteModalOpen] = useState(false);
+    const [addModalOpen, setAddModalOpen] = useState(false);
+    const [editModalOpen, setEditModalOpen] = useState(false);
+    const [viewModalOpen, setViewModalOpen] = useState(false);
     const [selectedUser, setSelectedUser] = useState(null);
-
-    const openDeleteModal = (user) => {
-        setSelectedUser(user);
-        setDeleteModalOpen(true);
-    };
-
-    const closeDeleteModal = () => {
-        setDeleteModalOpen(false);
-        setSelectedUser(null);
-    };
-
-    const handleDeleteUser = () => {
-        if (selectedUser) {
-            setAllUsers((prevUsers) => prevUsers.filter((user) => user.id !== selectedUser.id));
-            closeDeleteModal();
-        }
-    };
 
     // Dynamically compute filtered users
     const filteredUsers = useMemo(() => {
@@ -138,6 +111,76 @@ export default function Page() {
 
     // Total pages
     const totalPages = Math.ceil(filteredUsers.length / itemsPerPage);
+
+    const handleSearchToggle = () => {
+        setSearchOpen((prev) => !prev);
+        setSearchQuery(''); // Clear search query when toggling
+    };
+
+    const openAddModal = () => setAddModalOpen(true);
+    const closeAddModal = () => setAddModalOpen(false);
+
+    const openEditModal = (user) => {
+        setSelectedUser(user);
+        setEditModalOpen(true);
+    };
+    const closeEditModal = () => {
+        setEditModalOpen(false);
+        setSelectedUser(null);
+    };
+
+    const openViewModal = (user) => {
+        setSelectedUser(user);
+        setViewModalOpen(true);
+    };
+    const closeViewModal = () => {
+        setViewModalOpen(false);
+        setSelectedUser(null);
+    };
+
+    const openDeleteModal = (user) => {
+        setSelectedUser(user);
+        setDeleteModalOpen(true);
+    };
+    const closeDeleteModal = () => {
+        setDeleteModalOpen(false);
+        setSelectedUser(null);
+    };
+
+    // Add user handler
+    const handleAddUser = (newUser) => {
+        // Assign a new id and joinedDate, and default avatar if not provided
+        const nextId = allUsers.length ? Math.max(...allUsers.map(u => u.id)) + 1 : 1;
+        const avatar = newUser.avatar
+            ? newUser.avatar
+            : newUser.name && newUser.name.match(/(a|e|i|o|u)$/i)
+                ? '/img/F.jpg'
+                : '/img/M.jpg';
+        setAllUsers([
+            ...allUsers,
+            {
+                ...newUser,
+                id: nextId,
+                avatar,
+                joinedDate: new Date().toLocaleDateString(),
+            }
+        ]);
+    };
+
+    // Edit user handler
+    const handleEditUser = (updatedUser) => {
+        setAllUsers((prev) =>
+            prev.map((u) => (u.id === updatedUser.id ? { ...u, ...updatedUser } : u))
+        );
+    };
+
+    // Delete user handler
+    const handleDeleteUser = () => {
+        if (selectedUser) {
+            setAllUsers((prevUsers) => prevUsers.filter((user) => user.id !== selectedUser.id));
+            closeDeleteModal();
+        }
+    };
 
     return (
         <main className="h-[80vh] bg-neutral-950 text-white py-4 px-4 sm:px-6 lg:px-8">
@@ -206,7 +249,10 @@ export default function Page() {
                         </div>
 
                         {/* Add User Button */}
-                        <button className="flex items-center gap-2 px-4 py-2 bg-blue-600 hover:bg-blue-500 text-white text-xs sm:text-sm rounded">
+                        <button
+                            className="flex items-center gap-2 px-4 py-2 bg-blue-600 hover:bg-blue-500 text-white text-xs sm:text-sm rounded"
+                            onClick={openAddModal}
+                        >
                             <FiPlus />
                             Add User
                         </button>
@@ -271,12 +317,14 @@ export default function Page() {
                                             <button
                                                 className="p-2 bg-blue-600 hover:bg-blue-500 text-white rounded"
                                                 title="View"
+                                                onClick={() => openViewModal(u)}
                                             >
                                                 <FiEye />
                                             </button>
                                             <button
                                                 className="p-2 bg-yellow-600 hover:bg-yellow-500 text-white rounded"
                                                 title="Edit"
+                                                onClick={() => openEditModal(u)}
                                             >
                                                 <FiEdit />
                                             </button>
@@ -338,6 +386,25 @@ export default function Page() {
                 isOpen={deleteModalOpen}
                 onClose={closeDeleteModal}
                 onDelete={handleDeleteUser}
+                user={selectedUser}
+            />
+            {/* Add User Modal */}
+            <AddUserModal
+                isOpen={addModalOpen}
+                onClose={closeAddModal}
+                onSave={handleAddUser}
+            />
+            {/* Edit User Modal */}
+            <EditUserModal
+                isOpen={editModalOpen}
+                onClose={closeEditModal}
+                onSave={handleEditUser}
+                user={selectedUser}
+            />
+            {/* View User Modal */}
+            <ViewUserModal
+                isOpen={viewModalOpen}
+                onClose={closeViewModal}
                 user={selectedUser}
             />
         </main>

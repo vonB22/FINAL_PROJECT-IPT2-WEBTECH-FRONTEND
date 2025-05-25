@@ -3,12 +3,16 @@ import React, { useState } from 'react';
 const AddUserModal = ({ isOpen, onClose, onSave }) => {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
-    const [role, setRole] = useState('');
     const [status, setStatus] = useState('Active');
+    const [avatar, setAvatar] = useState('');
 
     const handleSubmit = () => {
-        const newUser = { name, email, role, status };
+        const newUser = { name, email, status, avatar };
         onSave(newUser);
+        setName('');
+        setEmail('');
+        setStatus('Active');
+        setAvatar('');
         onClose();
     };
 
@@ -25,7 +29,7 @@ const AddUserModal = ({ isOpen, onClose, onSave }) => {
                             type="text"
                             value={name}
                             onChange={(e) => setName(e.target.value)}
-                            className="w-full px-2 py-1 sm:px-3 sm:py-2 border rounded text-xs sm:text-sm"
+                            className="w-full px-2 py-1 sm:px-3 sm:py-2 border rounded text-xs sm:text-sm bg-zinc-900 text-zinc-100"
                         />
                     </div>
                     <div>
@@ -34,16 +38,7 @@ const AddUserModal = ({ isOpen, onClose, onSave }) => {
                             type="email"
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
-                            className="w-full px-2 py-1 sm:px-3 sm:py-2 border rounded text-xs sm:text-sm"
-                        />
-                    </div>
-                    <div>
-                        <label className="block text-xs sm:text-sm font-medium mb-1">Role</label>
-                        <input
-                            type="text"
-                            value={role}
-                            onChange={(e) => setRole(e.target.value)}
-                            className="w-full px-2 py-1 sm:px-3 sm:py-2 border rounded text-xs sm:text-sm"
+                            className="w-full px-2 py-1 sm:px-3 sm:py-2 border rounded text-xs sm:text-sm bg-zinc-900 text-zinc-100"
                         />
                     </div>
                     <div>
@@ -51,11 +46,20 @@ const AddUserModal = ({ isOpen, onClose, onSave }) => {
                         <select
                             value={status}
                             onChange={(e) => setStatus(e.target.value)}
-                            className="w-full px-2 py-1 sm:px-3 sm:py-2 border rounded text-xs sm:text-sm"
+                            className="w-full px-2 py-1 sm:px-3 sm:py-2 border rounded text-xs sm:text-sm bg-zinc-900 text-zinc-100"
                         >
                             <option value="Active">Active</option>
                             <option value="Inactive">Inactive</option>
                         </select>
+                    </div>
+                    <div>
+                        <label className="block text-xs sm:text-sm font-medium mb-1">Avatar URL</label>
+                        <input
+                            type="text"
+                            value={avatar}
+                            onChange={(e) => setAvatar(e.target.value)}
+                            className="w-full px-2 py-1 sm:px-3 sm:py-2 border rounded text-xs sm:text-sm bg-zinc-900 text-zinc-100"
+                        />
                     </div>
                 </div>
                 <div className="flex justify-end gap-2 mt-3 sm:mt-4">

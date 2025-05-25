@@ -3,7 +3,8 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import Link from "next/link";
-import { loginUser, registerUser } from '@/api-handler/auth';
+import { FaUser, FaUserShield } from "react-icons/fa";
+// import { loginUser, registerUser } from '@/api-handler/auth';
 import { useRouter } from 'next/navigation'; // Import Next.js router
 
 const DigitalLibraryLanding = () => {
@@ -62,8 +63,8 @@ const DigitalLibraryLanding = () => {
       {/* Header */}
       <nav
         className="flex items-center justify-end p-2 gap-6 shadow-md bg-neutral-900/60 backdrop-blur-lg">
-        <Link href="/book-website" className="underline text-[11px] text-white sm:text-sm hover:text-yellow-500 whitespace-nowrap">Website Test ➤</Link>
-        <Link href="/dashboard" className="underline text-[11px] text-white sm:text-sm hover:text-yellow-500 whitespace-nowrap">Dashboard Test ➤</Link>
+        {/* <Link href="/book-website" className="underline text-[11px] text-white sm:text-sm hover:text-yellow-500 whitespace-nowrap">Website Test ➤</Link>
+        <Link href="/dashboard" className="underline text-[11px] text-white sm:text-sm hover:text-yellow-500 whitespace-nowrap">Dashboard Test ➤</Link> */}
         <button onClick={() => { setMode('login'); setIsOpen(true); }}
           className="text-xs sm:text-sm px-4 py-2 sm:px-4 sm:py-2 text-white bg-yellow-500 hover:bg-yellow-600 rounded-full transition duration-300">
           Login
@@ -105,17 +106,30 @@ const DigitalLibraryLanding = () => {
         <p className="mt-4 text-lg sm:text-xl text-neutral-200 max-w-xl">
           Explore, borrow, and manage your favorite books online all in one place
         </p>
-        <motion.button
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
-          onClick={() => {
-            setMode('login');
-            setIsOpen(true);
-          }}
-          className="mt-8 px-6 sm:px-8 py-3 sm:py-3.5 bg-yellow-500 hover:bg-yellow-600 text-white/90 font-medium text-base sm:text-lg rounded-lg transition duration-300 transform hover:scale-105"
-        >
-          Login to continue
-        </motion.button>
+        <div className="mt-8 flex flex-col sm:flex-row gap-3 items-center justify-center">
+          <Link href="/book-website" passHref>
+            <motion.a
+              whileHover={{ scale: 1.04 }}
+              whileTap={{ scale: 0.98 }}
+              className="flex items-center gap-2 px-4 sm:px-6 py-2 sm:py-2.5 bg-yellow-500 hover:bg-yellow-600 text-white font-medium text-sm sm:text-base rounded-md shadow-md focus:outline-none focus:ring-2 focus:ring-yellow-400 transition duration-200"
+              style={{ minWidth: 170, justifyContent: 'center' }}
+            >
+              <FaUser className="text-base sm:text-[15px]" />
+              Login as Users
+            </motion.a>
+          </Link>
+          <Link href="/dashboard" passHref>
+            <motion.a
+              whileHover={{ scale: 1.04 }}
+              whileTap={{ scale: 0.98 }}
+              className="flex items-center gap-2 px-4 sm:px-6 py-2 sm:py-2.5 bg-yellow-500 hover:bg-yellow-600 text-white font-medium text-sm sm:text-base rounded-md shadow-md focus:outline-none focus:ring-2 focus:ring-yellow-400 transition duration-200"
+              style={{ minWidth: 170, justifyContent: 'center' }}
+            >
+              <FaUserShield className="text-base sm:text-lg" />
+              Login as Admin
+            </motion.a>
+          </Link>
+        </div>
       </main>
 
       {/* Footer */}

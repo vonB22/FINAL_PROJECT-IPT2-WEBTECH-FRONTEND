@@ -1,15 +1,16 @@
 'use client';
 import Image from 'next/image';
 import { FiEye, FiEdit, FiTrash, FiSearch, FiPlus } from 'react-icons/fi';
-import { useState, useMemo } from 'react';
-
+import { useState, useMemo, useEffect } from 'react';
+import apiClient from '@/lib/axios';
 import AddModal from '@/components/modals/BooksModal/AddModal';
 import ViewModal from '@/components/modals/BooksModal/ViewModal';
 import EditModal from '@/components/modals/BooksModal/EditModal';
 import DeleteModal from '@/components/modals/BooksModal/DeleteModal';
 
-export default function BooksPage() {
-    const initialBooks = [
+export default function BooksPage1() {
+    // Sample books
+    const sampleBooks = [
         {
             id: 1,
             title: 'The Pain of Onkai',
@@ -37,54 +38,9 @@ export default function BooksPage() {
             status: 'Available',
             image: '/img/book03.png',
         },
-        {
-            id: 4,
-            title: 'Eloquent JavaScript',
-            author: 'Marijn Haverbeke',
-            category: 'Programming',
-            published: '2020',
-            status: 'Available',
-            image: '/img/book03.png',
-        },
-        {
-            id: 5,
-            title: 'Eloquent JavaScript',
-            author: 'Marijn Haverbeke',
-            category: 'Programming',
-            published: '1999',
-            status: 'Issued',
-            image: '/img/book03.png',
-        },
-        {
-            id: 6,
-            title: 'Eloquent JavaScript',
-            author: 'Marijn Haverbeke',
-            category: 'Programming',
-            published: '1945',
-            status: 'Available',
-            image: '/img/book03.png',
-        },
-        {
-            id: 7,
-            title: 'Eloquent JavaScript',
-            author: 'Marijn Haverbeke',
-            category: 'Programming',
-            published: '2001',
-            status: 'Issued',
-            image: '/img/book03.png',
-        },
-        {
-            id: 8,
-            title: 'Eloquent JavaScript',
-            author: 'Marijn Haverbeke',
-            category: 'Programming',
-            published: '2014',
-            status: 'Available',
-            image: '/img/book03.png',
-        },
     ];
 
-    const [allBooks, setAllBooks] = useState(initialBooks);
+    const [allBooks, setAllBooks] = useState(sampleBooks);
     const [statusFilter, setStatusFilter] = useState('All');
     const [categoryFilter, setCategoryFilter] = useState('All');
     const [publishedFilter, setPublishedFilter] = useState('All');
@@ -99,8 +55,38 @@ export default function BooksPage() {
     const [deleteModalOpen, setDeleteModalOpen] = useState(false);
     const [selectedBook, setSelectedBook] = useState(null);
 
-    const handleAddBook = () => {
-        setAddModalOpen(true);
+    // Fetch books from backend (READ)
+    const fetchBooks = async () => {
+        try {
+            const response = await apiClient.get('/books');
+            // If using Laravel Resource, data is in response.data.data
+            const books = Array.isArray(response.data.data) ? response.data.data : [];
+            // Merge backend books with sampleBooks, avoiding duplicates by id
+            const merged = [
+                ...books.filter(b => !sampleBooks.some(sb => sb.id === b.id)),
+                ...sampleBooks,
+            ];
+            setAllBooks(merged);
+        } catch (error) {
+            setAllBooks(sampleBooks);
+            console.error('Error fetching books:', error);
+        }
+    };
+
+    useEffect(() => {
+        fetchBooks();
+    }, []);
+
+    // Add Book (CREATE)
+    const handleAddBook = async (bookData) => {
+        try {
+            // bookData: { title, author, category, published, status }
+            await apiClient.post('/books', bookData);
+            setAddModalOpen(false);
+            fetchBooks(); // Refresh the list after adding
+        } catch (error) {
+            console.error('Error adding book:', error);
+        }
     };
 
     const handleEditBook = (book) => {
@@ -113,38 +99,34 @@ export default function BooksPage() {
         setViewModalOpen(true);
     };
 
-    // const handleDeleteBook = (bookId) => {
-    //     setAllBooks((prevBooks) => {
-    //         const updatedBooks = prevBooks.filter((book) => book.id !== bookId);
-    //         const newTotalPages = Math.ceil(updatedBooks.length / itemsPerPage);
-    //         if (currentPage > newTotalPages) {
-    //             setCurrentPage(newTotalPages > 0 ? newTotalPages : 1);
-    //         }
-    //         return updatedBooks;
-    //     });
-    //     setDeleteModalOpen(false);
-    // };
-
-    const handleSaveBook = (newBook) => {
-        if (selectedBook) {
-            // Edit existing book
-            setAllBooks((prevBooks) =>
-                prevBooks.map((book) =>
-                    book.id === selectedBook.id ? { ...book, ...newBook } : book
-                )
-            );
-        } else {
-            // Add new book
-            setAllBooks((prevBooks) => [
-                ...prevBooks,
-                { id: Date.now(), ...newBook }, // Use a unique ID
-            ]);
+    const handleSaveBook = async (bookData) => {
+        try {
+            if (selectedBook) {
+                await apiClient.put(`/books/${selectedBook.id}`, bookData);
+                setEditModalOpen(false);
+            }
+            setSelectedBook(null);
+            fetchBooks();
+        } catch (error) {
+            console.error('Error saving book:', error);
         }
     };
 
     const DeleteModalOpen = (book) => {
         setSelectedBook(book);
         setDeleteModalOpen(true);
+    };
+
+    // Delete Book
+    const handleDeleteBook = async (bookId) => {
+        try {
+            await apiClient.delete(`/books/${bookId}`);
+            setDeleteModalOpen(false);
+            setSelectedBook(null);
+            fetchBooks();
+        } catch (error) {
+            console.error('Error deleting book:', error);
+        }
     };
 
     // Filter books based on filters and search query
@@ -184,6 +166,11 @@ export default function BooksPage() {
     const handleSearchToggle = () => {
         setSearchOpen((prev) => !prev);
         setSearchQuery(''); // Clear search query when toggling
+    };
+
+    // Book image fallback
+    const getBookImage = (book) => {
+        return book.image || '/img/book01.png';
     };
 
     return (
@@ -262,7 +249,7 @@ export default function BooksPage() {
                         </div>
 
                         {/* Add Book Button */}
-                        <button onClick={handleAddBook}
+                        <button onClick={() => setAddModalOpen(true)}
                             className="flex items-center gap-2 px-2 sm:px-4 py-2 bg-blue-600 hover:bg-blue-500 text-white text-xs sm:text-sm rounded whitespace-nowrap">
                             <FiPlus />
                             Add Book
@@ -294,7 +281,7 @@ export default function BooksPage() {
                                     {/* Book Image */}
                                     <td className="px-4 py-3">
                                         <Image
-                                            src={book.image}
+                                            src={book.image || '/img/book01.png'}
                                             alt={book.title}
                                             width={32}
                                             height={48}
@@ -399,7 +386,7 @@ export default function BooksPage() {
             <AddModal
                 isOpen={addModalOpen}
                 onClose={() => setAddModalOpen(false)}
-                onSave={handleSaveBook}
+                onSave={handleAddBook}
             />
 
             <ViewModal
@@ -424,3 +411,13 @@ export default function BooksPage() {
         </main >
     );
 }
+
+// No code change needed here for CSRF 419 error. Fix backend route/middleware.
+
+// IMPORTANT: If you see "CSRF token mismatch." when POSTing/PUTting to /books,
+// this is a backend (Laravel) configuration issue, not a frontend bug.
+// To fix:
+// 1. Make sure your /books API routes are in routes/api.php, NOT routes/web.php.
+// 2. In app/Http/Kernel.php, the 'api' middleware group should NOT include \App\Http\Middleware\VerifyCsrfToken::class.
+// 3. Do not use session/cookie auth for API routes; use token auth if needed.
+// 4. No frontend code change will fix this; it must be fixed in your Laravel backend config.

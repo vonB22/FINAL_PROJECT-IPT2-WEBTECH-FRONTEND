@@ -1,4 +1,5 @@
 'use client';
+import Image from 'next/image';
 import { useState } from "react";
 import { FiInbox, FiSend, FiTrash, FiMail, FiMenu, FiEdit, FiArrowLeft } from "react-icons/fi";
 
@@ -101,7 +102,16 @@ export default function Page() {
                                         }`}
                                     onClick={() => setSelectedMessage(message)}
                                 >
-                                    <h3 className="font-semibold">{message.sender}</h3>
+                                    <div className='flex gap-2 mb-2'>
+                                        <Image
+                                            src="/img/M.jpg"
+                                            alt="Profile"
+                                            width={32}
+                                            height={32}
+                                            className="rounded-full object-cover"
+                                        />
+                                        <h3 className="font-semibold">{message.sender}</h3>
+                                    </div>
                                     <p className="text-sm text-gray-400 truncate">{message.subject}</p>
                                     <span className="text-xs text-gray-500">{message.time}</span>
                                 </div>

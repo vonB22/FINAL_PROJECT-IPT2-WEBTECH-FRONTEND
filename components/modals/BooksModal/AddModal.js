@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { FaUpload } from 'react-icons/fa';
+import apiClient from '@/lib/axios';
 import Image from 'next/image';
 
 const AddModal = ({ isOpen, onClose, onSave }) => {
@@ -8,6 +9,8 @@ const AddModal = ({ isOpen, onClose, onSave }) => {
     const [category, setCategory] = useState('');
     const [published, setPublished] = useState('');
     const [status, setStatus] = useState('Available');
+    const [error, setError] = useState('');
+    const [loading, setLoading] = useState(false);
     const [image, setImage] = useState('/img/default-book.png'); // Default image
 
     const handleImageChange = (e) => {
@@ -21,10 +24,39 @@ const AddModal = ({ isOpen, onClose, onSave }) => {
         }
     };
 
-    const handleSubmit = () => {
-        const newBook = { title, author, category, published, status, image };
-        onSave(newBook);
-        onClose();
+    const handleSubmit = async () => {
+        setError('');
+        setLoading(true);
+        // Map frontend fields to backend requirements
+        const newBook = {
+            title,
+            author,
+            category,
+            published: Number(published), // backend expects integer
+            status,
+        };
+        try {
+            // Call onSave and wait for completion (in case it's async)
+            await onSave(newBook);
+            // Reset form after successful add
+            setTitle('');
+            setAuthor('');
+            setCategory('');
+            setPublished('');
+            setStatus('Available');
+            onClose();
+        } catch (err) {
+            // Show backend validation error if available
+            if (err.response && err.response.data && err.response.data.error) {
+                setError(Object.values(err.response.data.error).flat().join(' '));
+            } else if (err.response && err.response.data && err.response.data.message) {
+                setError(err.response.data.message);
+            } else {
+                setError('Failed to add book.');
+            }
+        } finally {
+            setLoading(false);
+        }
     };
 
     if (!isOpen) return null;
@@ -33,6 +65,7 @@ const AddModal = ({ isOpen, onClose, onSave }) => {
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
             <div className="bg-neutral-900 rounded-lg p-6 w-full max-w-md lg:max-w-2xl text-neutral-300">
                 <h2 className="text-xl font-semibold mb-4">Add Book</h2>
+                {error && <div className="mb-2 text-red-400 text-sm">{error}</div>}
                 <div className="grid grid-cols-2 gap-4">
                     {/* Left Column */}
                     <div>
@@ -66,7 +99,7 @@ const AddModal = ({ isOpen, onClose, onSave }) => {
                         <div className="mb-4">
                             <label className="block text-sm font-medium mb-1">Published Year</label>
                             <input
-                                type="text"
+                                type="number"
                                 value={published}
                                 onChange={(e) => setPublished(e.target.value)}
                                 className="w-full px-3 py-2 border rounded"
@@ -109,9 +142,9 @@ const AddModal = ({ isOpen, onClose, onSave }) => {
                     </div>
                 </div>
                 <div className="flex justify-end gap-2">
-                    <button onClick={onClose} className="px-4 py-2 bg-neutral-800 rounded">Cancel</button>
-                    <button onClick={handleSubmit} className="px-4 py-2 bg-blue-600 text-white rounded">
-                        Save
+                    <button onClick={onClose} className="px-4 py-2 bg-neutral-800 rounded" disabled={loading}>Cancel</button>
+                    <button onClick={handleSubmit} className="px-4 py-2 bg-blue-600 text-white rounded" disabled={loading}>
+                        {loading ? 'Saving...' : 'Save'}
                     </button>
                 </div>
             </div>
